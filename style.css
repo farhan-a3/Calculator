@@ -1,0 +1,47 @@
+html {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+
+
+#calculator {
+    background-color: black;
+}
+
+#display {
+    display: flex;
+    flex-direction: row-reverse;
+    
+    /* CSS just to show the bounds */
+    border: 1px solid;
+    background-color: #eee
+}
+
+#display > h1 {
+    padding: 10px;
+    margin: 0;
+}
+
+#buttons {
+    display: grid;
+    grid-template-areas: 
+        "plus minus times divide"
+        "seven eight nine equals"
+        "four five six equals"
+        "one two three equals"
+        "clear zero dot equals";
+    gap: 3px;
+    padding: 5px;
+}
+
+.equals {
+    grid-area: equals;
+}
