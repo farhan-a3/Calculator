@@ -5,7 +5,8 @@ const operationButtons = document.getElementsByClassName("operator");
 
 let firstNumber;
 let operation;
-let awaitingSecondNumber = false;
+let firstNumberAvailable = false;
+let secondNumberAvailable = false;
 
 // map operation strings to js math operations
 const operations = {
@@ -18,8 +19,9 @@ const operations = {
 for (let button of numberButtons) {
     // add functions to all number buttons to append the number to the display
     button.addEventListener("click", () => {
-        if (display.innerHTML == "0") {
+        if (!firstNumberAvailable) {
             display.innerHTML = button.value;
+            firstNumberAvailable = true;
         } else {
             display.innerHTML += button.value;
         }
@@ -27,10 +29,11 @@ for (let button of numberButtons) {
 }
 
 for (let button of operationButtons) {
-    if (!awaitingSecondNumber) {
+    if (!secondNumberAvailable) {
         button.addEventListener("click", () => {
             firstNumber = parseFloat(display.innerHTML);
-            awaitingSecondNumber = true;
+            firstNumberAvailable = true;
+            secondNumberAvailable = true;
             operation = button.value;
             display.innerHTML = "";
         });
@@ -47,15 +50,17 @@ function addDecimal() {
 function clearDisplay() {
     // reset back to 0
     display.innerHTML = "0";
-    awaitingSecondNumber = false;
+    firstNumberAvailable = false;
+    secondNumberAvailable = false;
 }
 
 function equals() {
-    if (awaitingSecondNumber && display.innerHTML != "") {
+    if (secondNumberAvailable && display.innerHTML != "") {
         let secondNumber = parseFloat(display.innerHTML);
         let result = operations[operation](firstNumber, secondNumber);
         display.innerHTML = result;
         firstNumber = result;
-        awaitingSecondNumber = false;
+        firstNumberAvailable = false;
+        secondNumberAvailable = false;
     }
 }

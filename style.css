@@ -23,6 +23,15 @@ button {
     font-weight: bold;
 }
 
+button:hover {
+    filter: brightness(120%);
+}
+
+button:active {
+    box-shadow: 0 4px #666;
+    transform: translateY(2px);
+}
+
 .operator {
     background-color: darkgrey;
 }
@@ -43,19 +52,39 @@ button {
 
 #display {
     display: flex;
+    align-items: center;
     justify-content: end;
     background-color: black;
     color: white;
     border-radius: inherit;
     margin: 5px;
-    min-height: 57.6px;
-    max-width: 346.038px;
+    height: 60px;
+    max-width: 346px;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 #display > h1 {
     padding: 10px;
     margin: 0;
-    max-width: fit-content;
+    max-width: 335px;
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+  height: 10px;
+  background-color: #F5F5F5;
+}
+
+/* scrollbar thumb (the part you drag to scroll) */
+::-webkit-scrollbar-thumb {
+  background-color: #000000;
+  border-radius: 10px;
+}
+
+/* scrollbar thumb hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555555;
 }
 
 #buttons {
